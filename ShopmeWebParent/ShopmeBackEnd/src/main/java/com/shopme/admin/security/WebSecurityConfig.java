@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -42,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/users/**", "/settings/**", "/countries/**", "/states/**").permitAll()
+			.antMatchers("/users/**", "/settings/**", "/countries/**", "/states/**").hasAuthority("Admin")
 			.antMatchers("/categories/**", "/brands/**").hasAnyAuthority("Admin", "Editor")
 			
 			.antMatchers("/products/new", "/products/delete/**").hasAnyAuthority("Admin", "Editor")
@@ -56,23 +57,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/products/**").hasAnyAuthority("Admin", "Editor")
 			
 			.anyRequest().authenticated()
-			.and()
-			.formLogin()			
+				.and()
+				.formLogin()
 				.loginPage("/login")
 				.usernameParameter("email")
+				.defaultSuccessUrl("/")
 				.permitAll()
-			.and().logout().permitAll()
-			.and()
+				.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login?logout")
+				.permitAll()
+				.and()
 				.rememberMe()
-					.key("AbcDefgHijKlmnOpqrs_1234567890")
-					.tokenValiditySeconds(7 * 24 * 60 * 60);
-					;
+				.key("AbcDefgHijKlmnOpqrs_1234567890")
+				.tokenValiditySeconds(7 * 24 * 60 * 60);
+		;
 			
 	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/images/**", "/js/**", "/webjars/**");
+		web.ignoring().antMatchers("/assets/**","/images/**", "/js/**", "/webjars/**");
 	}
 
 	
