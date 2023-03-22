@@ -121,18 +121,18 @@
                         </ul>
                         <div class="tab-content">
                           <div class="tab-pane fade show active" id="navs-pills-justified-overview" role="tabpanel">
-                            <!-- <div th:replace="product/product_overview :: content"></div> -->
+                            <div th:replace="product/product_overview :: content"></div>
 
                           </div>
                           <div class="tab-pane fade" id="navs-pills-justified-description" role="tabpanel">
 
                             <th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') ||  #authorization.expression('hasAuthority(''Editor'')')}">
-                              <!-- <div th:replace="product/product_description :: content"></div> -->
+                              <div th:replace="product/product_description :: content"></div>
                             </th:block>
 
                             <th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')')}">
                               <th:block th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
-                                <!-- <div th:replace="product/product_description_readonly :: content"></div> -->
+                                <div th:replace="product/product_description_readonly :: content"></div>
                               </th:block>
                             </th:block>
 
@@ -140,12 +140,12 @@
                           <div class="tab-pane fade" id="navs-pills-justified-images" role="tabpanel">
 
                             <th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')')}">
-                              <!-- <div th:replace="product/product_images :: content"></div> -->
+                              <div th:replace="product/product_images :: content"></div>
                             </th:block>
 
                             <th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')')}">
                               <th:block th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
-                                <!-- <div th:replace="product/product_images_readonly :: content"></div> -->
+                                <div th:replace="product/product_images_readonly :: content"></div>
                               </th:block>
                             </th:block>
 
@@ -153,7 +153,7 @@
                           <div class="tab-pane fade" id="navs-pills-justified-details" role="tabpanel">
 
                             <th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')')}">
-                              <!-- <div th:replace="product/product_details :: content"></div> -->
+                              <div th:replace="product/product_details :: content"></div>
                               <div>
                                 <input type="button"
                                        class="btn btn-outline-secondary"
@@ -164,7 +164,7 @@
 
                             <th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')')}">
                               <th:block th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
-                                <!-- <div th:replace="product/product_detail_readonly :: content"></div> -->
+                                <div th:replace="product/product_detail_readonly :: content"></div>
                               </th:block>
                             </th:block>
 
@@ -173,12 +173,12 @@
                           <div class="tab-pane fade " id="navs-pills-justified-shipping" role="tabpanel">
 
                             <th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')')}">
-                              <!-- <div th:replace="product/product_shipping :: content"></div> -->
+                              <div th:replace="product/product_shipping :: content"></div>
                             </th:block>
 
                             <th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')')}">
                               <th:block th:if="${#authorization.expression('hasAuthority(''Salesperson'')')}">
-                                <!-- <div th:replace="product/product_shipping_readonly :: content"></div> -->
+                                <div th:replace="product/product_shipping_readonly :: content"></div>
                               </th:block>
                             </th:block>
 
